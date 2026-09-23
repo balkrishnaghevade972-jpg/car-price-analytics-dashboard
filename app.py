@@ -138,6 +138,286 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 
+<style>
+/* ============================================================
+   MODERN AUTOMOTIVE UI — GLASS / PREMIUM GARAGE
+   ============================================================ */
+
+:root {
+    --bg-1: #070b14;
+    --bg-2: #0d1322;
+    --card: rgba(18, 25, 40, 0.72);
+    --card-strong: rgba(23, 32, 51, 0.92);
+    --line: rgba(255,255,255,0.09);
+    --text: #f4f7fb;
+    --muted: #94a3b8;
+    --accent: #38bdf8;
+    --accent-2: #818cf8;
+}
+
+/* Main background */
+.stApp {
+    background:
+        radial-gradient(circle at 10% 0%, rgba(56,189,248,.10), transparent 28%),
+        radial-gradient(circle at 90% 10%, rgba(129,140,248,.10), transparent 30%),
+        linear-gradient(135deg, var(--bg-1), var(--bg-2) 55%, #080d18);
+    color: var(--text);
+}
+
+.main .block-container {
+    max-width: 1500px;
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+}
+
+/* Hide Streamlit chrome */
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
+header {background: transparent !important;}
+
+/* Premium hero */
+.hero {
+    position: relative;
+    overflow: hidden;
+    padding: 34px 38px;
+    margin-bottom: 24px;
+    border: 1px solid var(--line);
+    border-radius: 26px;
+    background:
+        linear-gradient(120deg, rgba(15,23,42,.94), rgba(15,23,42,.68)),
+        radial-gradient(circle at 90% 20%, rgba(56,189,248,.16), transparent 35%);
+    box-shadow: 0 20px 60px rgba(0,0,0,.28);
+}
+
+.hero::after {
+    content: "01";
+    position: absolute;
+    right: 35px;
+    bottom: -35px;
+    font-size: 150px;
+    font-weight: 900;
+    color: rgba(255,255,255,.025);
+}
+
+.hero-kicker {
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+.hero-title {
+    color: #fff;
+    font-size: clamp(34px, 4vw, 58px);
+    line-height: 1;
+    font-weight: 900;
+    letter-spacing: -2px;
+    margin: 0;
+}
+
+.hero-title span {
+    color: var(--accent);
+}
+
+.hero-subtitle {
+    color: #a8b4c7;
+    font-size: 16px;
+    margin-top: 13px;
+    max-width: 680px;
+}
+
+.hero-pill {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 7px 13px;
+    border-radius: 999px;
+    background: rgba(56,189,248,.09);
+    border: 1px solid rgba(56,189,248,.22);
+    color: #bae6fd;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+/* KPI cards */
+.kpi-card {
+    min-height: 118px;
+    padding: 21px 22px;
+    border-radius: 20px;
+    border: 1px solid var(--line);
+    background: linear-gradient(145deg, rgba(24,34,54,.90), rgba(12,18,31,.82));
+    box-shadow: 0 12px 35px rgba(0,0,0,.20);
+    transition: transform .2s ease, border-color .2s ease;
+}
+
+.kpi-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(56,189,248,.35);
+}
+
+.kpi-title {
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .8px;
+}
+
+.kpi-value {
+    color: #fff;
+    font-size: 30px;
+    font-weight: 850;
+    margin-top: 9px;
+}
+
+/* Section headings */
+.section-title {
+    color: #fff;
+    font-size: 28px;
+    font-weight: 850;
+    letter-spacing: -.6px;
+    margin: 8px 0 20px;
+}
+
+/* Tabs */
+button[data-baseweb="tab"] {
+    color: #91a0b5 !important;
+    font-weight: 700 !important;
+    border-radius: 12px !important;
+    padding: 10px 14px !important;
+}
+
+button[data-baseweb="tab"][aria-selected="true"] {
+    color: #e0f2fe !important;
+    background: rgba(56,189,248,.10) !important;
+}
+
+div[data-baseweb="tab-highlight"] {
+    background-color: var(--accent) !important;
+}
+
+/* Sidebar */
+section[data-testid="stSidebar"] {
+    background:
+        linear-gradient(180deg, rgba(8,13,24,.98), rgba(12,18,31,.98));
+    border-right: 1px solid rgba(255,255,255,.06);
+}
+
+section[data-testid="stSidebar"] .block-container {
+    padding-top: 1.5rem;
+}
+
+section[data-testid="stSidebar"] h2 {
+    color: #fff;
+    font-weight: 850;
+}
+
+/* Inputs */
+div[data-baseweb="select"] > div,
+div[data-baseweb="input"] > div,
+.stTextInput > div > div,
+.stNumberInput > div > div {
+    background: rgba(15,23,42,.75) !important;
+    border: 1px solid rgba(255,255,255,.09) !important;
+    border-radius: 12px !important;
+}
+
+div[data-baseweb="select"] > div:focus-within,
+.stTextInput > div > div:focus-within,
+.stNumberInput > div > div:focus-within {
+    border-color: rgba(56,189,248,.55) !important;
+    box-shadow: 0 0 0 2px rgba(56,189,248,.08) !important;
+}
+
+/* Sliders */
+div[data-testid="stSlider"] [data-baseweb="slider"] div[role="slider"] {
+    background: var(--accent) !important;
+}
+
+/* Streamlit metrics */
+div[data-testid="stMetric"] {
+    background: rgba(17,24,39,.72);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 15px;
+}
+
+/* Buttons */
+.stButton > button,
+.stDownloadButton > button {
+    border: 1px solid rgba(56,189,248,.28) !important;
+    border-radius: 13px !important;
+    min-height: 45px !important;
+    font-weight: 800 !important;
+    background: linear-gradient(135deg, #0ea5e9, #6366f1) !important;
+    color: white !important;
+    box-shadow: 0 8px 25px rgba(14,165,233,.16);
+    transition: transform .18s ease, box-shadow .18s ease;
+}
+
+.stButton > button:hover,
+.stDownloadButton > button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(56,189,248,.24);
+}
+
+/* Cards generated by our app */
+.insight-card {
+    background: rgba(15,23,42,.76);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--accent);
+    padding: 16px 18px;
+    border-radius: 14px;
+    margin: 10px 0;
+}
+
+.prediction-card {
+    background:
+        radial-gradient(circle at 50% 0%, rgba(56,189,248,.15), transparent 50%),
+        rgba(15,23,42,.85);
+    padding: 34px;
+    border-radius: 24px;
+    border: 1px solid rgba(56,189,248,.25);
+    text-align: center;
+    box-shadow: 0 18px 50px rgba(0,0,0,.28);
+}
+
+.prediction-price {
+    color: #7dd3fc;
+    font-size: 48px;
+    font-weight: 900;
+    letter-spacing: -1.5px;
+}
+
+/* Dataframes */
+div[data-testid="stDataFrame"] {
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+}
+
+/* Alerts */
+div[data-testid="stAlert"] {
+    border-radius: 14px;
+}
+
+/* Dividers */
+hr {
+    border-color: rgba(255,255,255,.07) !important;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    color: #64748b;
+    padding: 38px 10px 10px;
+    margin-top: 45px;
+    font-size: 13px;
+}
+</style>
+
+
 # ============================================================
 # LOAD DATA
 # ============================================================
@@ -206,10 +486,8 @@ df = df.dropna(
 st.sidebar.markdown(
     "## 🏎️ Midnight Garage"
 )
-
-st.sidebar.markdown(
-    "### Car Analytics Dashboard"
-)
+st.sidebar.caption("CAR PRICE ANALYTICS • v2.0")
+st.sidebar.markdown("### Filters & Discovery")
 
 st.sidebar.markdown("---")
 
@@ -381,12 +659,17 @@ filtered_df = filtered_df[
 # ============================================================
 
 st.markdown(
-    '<div class="main-title">🏎️ CAR PRICE ANALYTICS</div>',
-    unsafe_allow_html=True
-)
-
-st.markdown(
-    '<div class="subtitle">Midnight Garage • Explore • Compare • Predict</div>',
+    """
+    <div class="hero">
+        <div class="hero-kicker">Automotive Intelligence • Data Analytics</div>
+        <div class="hero-title">CAR PRICE <span>ANALYTICS</span></div>
+        <div class="hero-subtitle">
+            Explore market patterns, compare vehicle performance and
+            estimate car prices using machine learning.
+        </div>
+        <div class="hero-pill">● LIVE DATA EXPLORATION &nbsp; • &nbsp; ML PRICE PREDICTION</div>
+    </div>
+    """,
     unsafe_allow_html=True
 )
 
@@ -477,14 +760,14 @@ st.markdown("---")
 
 summary, overview, performance, pricing, comparison, companies_tab, explorer, prediction = st.tabs(
     [
-        "📋 Project Summary",
-        "🌌 Overview",
-        "🏎️ Performance",
+        "📋 Summary",
+        "📊 Overview",
+        "🏁 Performance",
         "💰 Pricing",
-        "⚖️ Compare Cars",
-        "🏢 Manufacturers",
-        "🔎 Car Explorer",
-        "💰 Price Prediction"
+        "⚖️ Compare",
+        "🏢 Brands",
+        "🔎 Explorer",
+        "🤖 Predict Price"
     ]
 )
 
@@ -1713,11 +1996,7 @@ st.markdown(
 )
 
 
-csv_data = filtered_df.to_csv(
-    index=False
-).encode("utf-8")
-
-csv_data = filtered_df.to_csv(index=False)
+csv_data = filtered_df.to_csv(index=False).encode("utf-8")
 
 st.download_button(
     label="⬇️ Download Current Dataset",
