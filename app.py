@@ -17,7 +17,7 @@ import joblib
 
 st.set_page_config(
     page_title="Car Price Analytics",
-    page_icon="🏎️",
+   
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -204,7 +204,7 @@ df = df.dropna(
 # ============================================================
 
 st.sidebar.markdown(
-    "## 🏎️ Midnight Garage"
+    "##  Midnight Garage"
 )
 
 st.sidebar.markdown(
@@ -219,7 +219,7 @@ st.sidebar.markdown("---")
 # ============================================================
 
 search_car = st.sidebar.text_input(
-    "🔎 Search Car",
+    " Search Car",
     ""
 )
 
@@ -236,7 +236,7 @@ companies = sorted(
 
 
 selected_company = st.sidebar.selectbox(
-    "🏢 Manufacturer",
+    "Manufacturer",
     ["All"] + companies
 )
 
@@ -253,7 +253,7 @@ fuel_types = sorted(
 
 
 selected_fuel = st.sidebar.selectbox(
-    "⛽ Fuel Type",
+    " Fuel Type",
     ["All"] + fuel_types
 )
 
@@ -272,7 +272,7 @@ max_price = float(
 
 
 price_range = st.sidebar.slider(
-    "💰 Price Range",
+    " Price Range",
     min_value=min_price,
     max_value=max_price,
     value=(min_price, max_price)
@@ -293,7 +293,7 @@ max_hp = float(
 
 
 hp_range = st.sidebar.slider(
-    "🐎 HorsePower",
+    " HorsePower",
     min_value=min_hp,
     max_value=max_hp,
     value=(min_hp, max_hp)
@@ -314,7 +314,7 @@ max_speed = float(
 
 
 speed_range = st.sidebar.slider(
-    "🚀 Top Speed",
+    " Top Speed",
     min_value=min_speed,
     max_value=max_speed,
     value=(min_speed, max_speed)
@@ -434,7 +434,7 @@ with col2:
     st.markdown(
         f"""
         <div class="kpi-card">
-            <div class="kpi-title">💰 Average Price</div>
+            <div class="kpi-title"> Average Price</div>
             <div class="kpi-value">${average_price:,.0f}</div>
         </div>
         """,
@@ -447,7 +447,7 @@ with col3:
     st.markdown(
         f"""
         <div class="kpi-card">
-            <div class="kpi-title">🐎 Average HorsePower</div>
+            <div class="kpi-title"> Average HorsePower</div>
             <div class="kpi-value">{average_hp:,.0f}</div>
         </div>
         """,
@@ -460,7 +460,7 @@ with col4:
     st.markdown(
         f"""
         <div class="kpi-card">
-            <div class="kpi-title">🚀 Average Speed</div>
+            <div class="kpi-title"> Average Speed</div>
             <div class="kpi-value">{average_speed:,.0f} km/h</div>
         </div>
         """,
@@ -477,14 +477,14 @@ st.markdown("---")
 
 summary, overview, performance, pricing, comparison, companies_tab, explorer, prediction = st.tabs(
     [
-        "📋 Project Summary",
-        "🌌 Overview",
-        "🏎️ Performance",
-        "💰 Pricing",
-        "⚖️ Compare Cars",
-        "🏢 Manufacturers",
-        "🔎 Car Explorer",
-        "💰 Price Prediction"
+        " Project Summary",
+        " Overview",
+        " Performance",
+        " Pricing",
+        " Compare Cars",
+        " Manufacturers",
+        " Car Explorer",
+        " Price Prediction"
     ]
 )
 
@@ -496,11 +496,11 @@ summary, overview, performance, pricing, comparison, companies_tab, explorer, pr
 with summary:
 
     st.markdown(
-        '<div class="section-title">📋 Project Summary</div>',
+        '<div class="section-title"> Project Summary</div>',
         unsafe_allow_html=True
     )
 
-    st.markdown("### 🎯 Problem Statement")
+    st.markdown("###  Problem Statement")
 
     st.write(
         """
@@ -511,7 +511,7 @@ with summary:
     )
 
 
-    st.markdown("### 🎯 Project Objectives")
+    st.markdown("###  Project Objectives")
 
     objectives = [
         "Clean and preprocess the car dataset.",
@@ -528,11 +528,11 @@ with summary:
     for objective in objectives:
 
         st.write(
-            "✔️ " + objective
+            " " + objective
         )
 
 
-    st.markdown("### 📊 Dataset Information")
+    st.markdown("### Dataset Information")
 
 
     info_col1, info_col2, info_col3 = st.columns(3)
@@ -562,7 +562,7 @@ with summary:
         )
 
 
-    st.markdown("### 🧹 Data Cleaning")
+    st.markdown("###  Data Cleaning")
 
 
     cleaning_points = [
@@ -578,11 +578,11 @@ with summary:
     for point in cleaning_points:
 
         st.write(
-            "✔️ " + point
+            "" + point
         )
 
 
-    st.markdown("### 🔬 Exploratory Data Analysis")
+    st.markdown("###  Exploratory Data Analysis")
 
 
     st.write(
@@ -594,7 +594,7 @@ with summary:
     )
 
 
-    st.markdown("### 🤖 Machine Learning")
+    st.markdown("###  Machine Learning")
 
 
     st.write(
@@ -611,7 +611,7 @@ with summary:
     )
 
 
-    st.markdown("### 🛠️ Technologies Used")
+    st.markdown("###  Technologies Used")
 
 
     technologies = [
@@ -635,7 +635,7 @@ with summary:
         )
 
 
-    st.markdown("### 🔄 Project Workflow")
+    st.markdown("###  Project Workflow")
 
 
     st.write(
@@ -654,7 +654,7 @@ with summary:
 with overview:
 
     st.markdown(
-        '<div class="section-title">🌌 Market Overview</div>',
+        '<div class="section-title"> Market Overview</div>',
         unsafe_allow_html=True
     )
 
@@ -774,7 +774,7 @@ with overview:
         # ----------------------------------------------------
 
         st.markdown(
-            "### 💡 Live Insights"
+            "###  Live Insights"
         )
 
 
@@ -791,7 +791,7 @@ with overview:
         st.markdown(
             f"""
             <div class="insight-card">
-            💰 Highest priced car in the current selection:
+             Highest priced car in the current selection:
             <b>{highest_price_car['Cars Names']}</b>
             </div>
             """,
@@ -802,7 +802,7 @@ with overview:
         st.markdown(
             f"""
             <div class="insight-card">
-            🐎 Highest horsepower car:
+             Highest horsepower car:
             <b>{highest_hp_car['Cars Names']}</b>
             </div>
             """,
@@ -817,7 +817,7 @@ with overview:
 with performance:
 
     st.markdown(
-        '<div class="section-title">🏎️ Performance Analysis</div>',
+        '<div class="section-title"> Performance Analysis</div>',
         unsafe_allow_html=True
     )
 
@@ -898,7 +898,7 @@ with performance:
 
 
         st.markdown(
-            "### 📊 Correlation with Price"
+            "###  Correlation with Price"
         )
 
 
@@ -958,7 +958,7 @@ with performance:
 with pricing:
 
     st.markdown(
-        '<div class="section-title">💰 Pricing Analysis</div>',
+        '<div class="section-title"> Pricing Analysis</div>',
         unsafe_allow_html=True
     )
 
@@ -1011,7 +1011,7 @@ with pricing:
         # ----------------------------------------------------
 
         st.markdown(
-            "### 📊 Price Segments"
+            "###  Price Segments"
         )
 
 
@@ -1070,7 +1070,7 @@ with pricing:
         # ----------------------------------------------------
 
         st.markdown(
-            "### 🏆 Highest-Priced Cars"
+            "###  Highest-Priced Cars"
         )
 
 
@@ -1104,7 +1104,7 @@ with pricing:
 with comparison:
 
     st.markdown(
-        '<div class="section-title">⚖️ Compare Cars</div>',
+        '<div class="section-title"> Compare Cars</div>',
         unsafe_allow_html=True
     )
 
@@ -1342,7 +1342,7 @@ with companies_tab:
 
 
         st.markdown(
-            "### 📊 Manufacturer Summary"
+            "###  Manufacturer Summary"
         )
 
 
@@ -1359,7 +1359,7 @@ with companies_tab:
 with explorer:
 
     st.markdown(
-        '<div class="section-title">🔎 Car Explorer</div>',
+        '<div class="section-title"> Car Explorer</div>',
         unsafe_allow_html=True
     )
 
@@ -1381,7 +1381,7 @@ with explorer:
 
 
     st.markdown(
-        f"### 🏎️ {explorer_car}"
+        f"###  {explorer_car}"
     )
 
 
@@ -1467,7 +1467,7 @@ with explorer:
 with prediction:
 
     st.markdown(
-        '<div class="section-title">💰 Car Price Prediction</div>',
+        '<div class="section-title"> Car Price Prediction</div>',
         unsafe_allow_html=True
     )
 
@@ -1481,7 +1481,7 @@ with prediction:
 
 
     st.info(
-        "🤖 Prediction is generated using the Random Forest model trained in Google Colab."
+        " Prediction is generated using the Random Forest model trained in Google Colab."
     )
 
 
@@ -1495,7 +1495,7 @@ with prediction:
     with col1:
 
         manufacturer = st.selectbox(
-            "🏢 Manufacturer",
+            " Manufacturer",
             sorted(
                 df["Company Names"]
                 .dropna()
@@ -1506,7 +1506,7 @@ with prediction:
 
 
         fuel_type = st.selectbox(
-            "⛽ Fuel Type",
+            " Fuel Type",
             sorted(
                 df["Fuel Types"]
                 .dropna()
@@ -1517,7 +1517,7 @@ with prediction:
 
 
         horsepower = st.number_input(
-            "🐎 HorsePower",
+            " HorsePower",
             min_value=0.0,
             value=150.0,
             step=1.0,
@@ -1526,7 +1526,7 @@ with prediction:
 
 
         top_speed = st.number_input(
-            "🚀 Top Speed (km/h)",
+            " Top Speed (km/h)",
             min_value=0.0,
             value=200.0,
             step=1.0,
@@ -1541,7 +1541,7 @@ with prediction:
     with col2:
 
         performance = st.number_input(
-            "⚡ 0–100 km/h Performance (seconds)",
+            " 0–100 km/h Performance (seconds)",
             min_value=0.0,
             value=8.0,
             step=0.1,
@@ -1550,7 +1550,7 @@ with prediction:
 
 
         cc_battery = st.number_input(
-            "🔋 CC / Battery Capacity",
+            " CC / Battery Capacity",
             min_value=0.0,
             value=1500.0,
             step=50.0,
@@ -1584,7 +1584,7 @@ with prediction:
     # --------------------------------------------------------
 
     predict_button = st.button(
-        "🚀 Predict Car Price",
+        " Predict Car Price",
         use_container_width=True,
         type="primary"
     )
@@ -1653,7 +1653,7 @@ with prediction:
 
 
             st.markdown(
-                "### 📋 Prediction Input"
+                "###  Prediction Input"
             )
 
 
@@ -1693,7 +1693,7 @@ with prediction:
         except Exception as e:
 
             st.error(
-                "❌ Prediction could not be generated."
+                " Prediction could not be generated."
             )
 
             st.code(
@@ -1709,7 +1709,7 @@ st.markdown("---")
 
 
 st.markdown(
-    "### 📥 Download Current Dataset"
+    "###  Download Current Dataset"
 )
 
 
@@ -1720,7 +1720,7 @@ csv_data = filtered_df.to_csv(
 csv_data = filtered_df.to_csv(index=False)
 
 st.download_button(
-    label="⬇️ Download Current Dataset",
+    label=" Download Current Dataset",
     data=csv_data,
     file_name="current_car_dataset.csv",
     mime="text/csv",
