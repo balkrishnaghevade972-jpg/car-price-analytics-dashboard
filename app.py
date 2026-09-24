@@ -1,6 +1,6 @@
 # ============================================================
 # CAR PRICE ANALYTICS DASHBOARD
-# Midnight Garage Theme
+# Professional Automotive Analytics Theme
 # ============================================================
 
 import streamlit as st
@@ -17,7 +17,7 @@ import joblib
 
 st.set_page_config(
     page_title="Car Price Analytics",
-    page_icon="🏎️",
+    page_icon="",
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -30,108 +30,285 @@ st.set_page_config(
 st.markdown("""
 <style>
 
-    .stApp {
-        background: linear-gradient(
-            135deg,
-            #050b18 0%,
-            #0a1428 50%,
-            #07101f 100%
-        );
-        color: white;
-    }
+/* ============================================================
+   GLOBAL APPLICATION
+   ============================================================ */
 
-    .main-title {
-        font-size: 45px;
-        font-weight: 800;
-        text-align: center;
-        color: #00e5ff;
-        margin-bottom: 5px;
-    }
+.stApp {
+    background: #0b0f14;
+    color: #e8edf2;
+}
 
-    .subtitle {
-        text-align: center;
-        font-size: 18px;
-        color: #a9c6d9;
-        margin-bottom: 30px;
-    }
+.main {
+    background: #0b0f14;
+}
 
-    .section-title {
-        color: #00e5ff;
-        font-size: 28px;
-        font-weight: 700;
-        margin-top: 10px;
-        margin-bottom: 20px;
-    }
+.block-container {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    max-width: 1450px;
+}
 
-    .kpi-card {
-        background: linear-gradient(
-            145deg,
-            #101f38,
-            #0b172b
-        );
-        padding: 20px;
-        border-radius: 15px;
-        border: 1px solid #1f4564;
-        text-align: center;
-        box-shadow: 0 5px 20px rgba(0, 229, 255, 0.08);
-    }
 
-    .kpi-title {
-        color: #9bb5c7;
-        font-size: 15px;
-    }
+/* ============================================================
+   HEADER
+   ============================================================ */
 
-    .kpi-value {
-        color: #00e5ff;
-        font-size: 28px;
-        font-weight: 700;
-    }
+.main-title {
+    font-size: 42px;
+    font-weight: 700;
+    text-align: center;
+    color: #f5f7fa;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+}
 
-    .insight-card {
-        background: #0d1b30;
-        border-left: 4px solid #00e5ff;
-        padding: 15px;
-        border-radius: 8px;
-        margin-bottom: 12px;
-    }
+.subtitle {
+    text-align: center;
+    font-size: 16px;
+    color: #8f9aa6;
+    margin-bottom: 30px;
+}
 
-    .prediction-card {
-        background: linear-gradient(
-            135deg,
-            #09243a,
-            #102b48
-        );
-        padding: 30px;
-        border-radius: 20px;
-        border: 1px solid #00e5ff;
-        text-align: center;
-        margin-top: 20px;
-        box-shadow: 0 10px 35px rgba(0, 229, 255, 0.15);
-    }
 
-    .prediction-price {
-        color: #00e5ff;
-        font-size: 42px;
-        font-weight: 800;
-    }
+/* ============================================================
+   SECTION HEADINGS
+   ============================================================ */
 
-    .footer {
-        text-align: center;
-        color: #78909c;
-        padding: 30px;
-        margin-top: 40px;
-    }
-    .stDownloadButton button {
-    background-color: #ff4b4b !important;
+.section-title {
+    color: #4da3ff;
+    font-size: 26px;
+    font-weight: 650;
+    margin-top: 10px;
+    margin-bottom: 22px;
+    border-bottom: 1px solid #252d36;
+    padding-bottom: 10px;
+}
+
+
+/* ============================================================
+   KPI CARDS
+   ============================================================ */
+
+.kpi-card {
+    background: #121820;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #252e38;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+}
+
+.kpi-title {
+    color: #8f9aa6;
+    font-size: 14px;
+    margin-bottom: 6px;
+}
+
+.kpi-value {
+    color: #4da3ff;
+    font-size: 27px;
+    font-weight: 700;
+}
+
+
+/* ============================================================
+   INSIGHT CARDS
+   ============================================================ */
+
+.insight-card {
+    background: #121820;
+    border-left: 3px solid #4da3ff;
+    padding: 14px 16px;
+    border-radius: 6px;
+    margin-bottom: 12px;
+    color: #d9e0e7;
+}
+
+
+/* ============================================================
+   PREDICTION
+   ============================================================ */
+
+.prediction-card {
+    background: #121820;
+    padding: 30px;
+    border-radius: 12px;
+    border: 1px solid #4da3ff;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.prediction-price {
+    color: #4da3ff;
+    font-size: 40px;
+    font-weight: 750;
+}
+
+
+/* ============================================================
+   SIDEBAR
+   ============================================================ */
+
+[data-testid="stSidebar"] {
+    background: #0f141a;
+    border-right: 1px solid #252d36;
+}
+
+[data-testid="stSidebar"] h2,
+[data-testid="stSidebar"] h3 {
+    color: #f5f7fa;
+}
+
+[data-testid="stSidebar"] label {
+    color: #b8c2cc !important;
+}
+
+
+/* ============================================================
+   INPUTS
+   ============================================================ */
+
+.stSelectbox label,
+.stTextInput label,
+.stNumberInput label,
+.stSlider label {
+    color: #b8c2cc !important;
+    font-weight: 500;
+}
+
+.stSelectbox div[data-baseweb="select"] > div {
+    background-color: #151b22;
+    border-color: #303944;
+}
+
+.stTextInput input,
+.stNumberInput input {
+    background-color: #151b22;
+    color: #f5f7fa;
+    border: 1px solid #303944;
+}
+
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+
+.stButton button {
+    background: #2f80ed;
+    color: white;
+    border: none;
+    border-radius: 7px;
+    font-weight: 600;
+    padding: 10px 20px;
+}
+
+.stButton button:hover {
+    background: #4da3ff;
+    color: white;
+}
+
+
+/* ============================================================
+   DOWNLOAD BUTTON
+   ============================================================ */
+
+.stDownloadButton button {
+    background: #2f80ed !important;
     color: white !important;
     border: none !important;
     font-weight: 600 !important;
-    border-radius: 10px !important;
+    border-radius: 7px !important;
 }
 
 .stDownloadButton button:hover {
-    background-color: #ff6666 !important;
+    background: #4da3ff !important;
     color: white !important;
+}
+
+
+/* ============================================================
+   TABS
+   ============================================================ */
+
+.stTabs [data-baseweb="tab-list"] {
+    gap: 4px;
+    background: #0f141a;
+    border-bottom: 1px solid #252d36;
+}
+
+.stTabs [data-baseweb="tab"] {
+    color: #8f9aa6;
+    font-weight: 500;
+    padding: 12px 16px;
+}
+
+.stTabs [aria-selected="true"] {
+    color: #4da3ff !important;
+    border-bottom: 2px solid #4da3ff;
+}
+
+
+/* ============================================================
+   DATAFRAME
+   ============================================================ */
+
+[data-testid="stDataFrame"] {
+    border: 1px solid #252e38;
+    border-radius: 8px;
+}
+
+
+/* ============================================================
+   METRICS
+   ============================================================ */
+
+[data-testid="stMetric"] {
+    background: #121820;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #252e38;
+}
+
+[data-testid="stMetricLabel"] {
+    color: #8f9aa6 !important;
+}
+
+[data-testid="stMetricValue"] {
+    color: #f5f7fa !important;
+}
+
+
+/* ============================================================
+   ALERTS
+   ============================================================ */
+
+.stAlert {
+    background: #121820;
+    border: 1px solid #303944;
+}
+
+
+/* ============================================================
+   DIVIDERS
+   ============================================================ */
+
+hr {
+    border-color: #252d36;
+}
+
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+
+.footer {
+    text-align: center;
+    color: #687582;
+    padding: 30px;
+    margin-top: 40px;
+    border-top: 1px solid #252d36;
+    font-size: 13px;
 }
 
 </style>
@@ -204,11 +381,11 @@ df = df.dropna(
 # ============================================================
 
 st.sidebar.markdown(
-    "## 🏎️ Midnight Garage"
+    "## CAR ANALYTICS"
 )
 
 st.sidebar.markdown(
-    "### Car Analytics Dashboard"
+    "### Dashboard"
 )
 
 st.sidebar.markdown("---")
@@ -219,7 +396,7 @@ st.sidebar.markdown("---")
 # ============================================================
 
 search_car = st.sidebar.text_input(
-    "🔎 Search Car",
+    "Search Car",
     ""
 )
 
@@ -236,7 +413,7 @@ companies = sorted(
 
 
 selected_company = st.sidebar.selectbox(
-    "🏢 Manufacturer",
+    "Manufacturer",
     ["All"] + companies
 )
 
@@ -253,7 +430,7 @@ fuel_types = sorted(
 
 
 selected_fuel = st.sidebar.selectbox(
-    "⛽ Fuel Type",
+    "Fuel Type",
     ["All"] + fuel_types
 )
 
@@ -272,7 +449,7 @@ max_price = float(
 
 
 price_range = st.sidebar.slider(
-    "💰 Price Range",
+    "Price Range",
     min_value=min_price,
     max_value=max_price,
     value=(min_price, max_price)
@@ -293,7 +470,7 @@ max_hp = float(
 
 
 hp_range = st.sidebar.slider(
-    "🐎 HorsePower",
+    "HorsePower",
     min_value=min_hp,
     max_value=max_hp,
     value=(min_hp, max_hp)
@@ -314,7 +491,7 @@ max_speed = float(
 
 
 speed_range = st.sidebar.slider(
-    "🚀 Top Speed",
+    "Top Speed",
     min_value=min_speed,
     max_value=max_speed,
     value=(min_speed, max_speed)
@@ -381,12 +558,12 @@ filtered_df = filtered_df[
 # ============================================================
 
 st.markdown(
-    '<div class="main-title">🏎️ CAR PRICE ANALYTICS</div>',
+    '<div class="main-title">CAR PRICE ANALYTICS</div>',
     unsafe_allow_html=True
 )
 
 st.markdown(
-    '<div class="subtitle">Midnight Garage • Explore • Compare • Predict</div>',
+    '<div class="subtitle">Automotive Data Analytics • Explore • Compare • Predict</div>',
     unsafe_allow_html=True
 )
 
@@ -421,7 +598,7 @@ with col1:
     st.markdown(
         f"""
         <div class="kpi-card">
-            <div class="kpi-title">🚘 Cars</div>
+            <div class="kpi-title">Cars</div>
             <div class="kpi-value">{total_cars}</div>
         </div>
         """,
@@ -434,7 +611,7 @@ with col2:
     st.markdown(
         f"""
         <div class="kpi-card">
-            <div class="kpi-title">💰 Average Price</div>
+            <div class="kpi-title">Average Price</div>
             <div class="kpi-value">${average_price:,.0f}</div>
         </div>
         """,
@@ -447,7 +624,7 @@ with col3:
     st.markdown(
         f"""
         <div class="kpi-card">
-            <div class="kpi-title">🐎 Average HorsePower</div>
+            <div class="kpi-title">Average HorsePower</div>
             <div class="kpi-value">{average_hp:,.0f}</div>
         </div>
         """,
@@ -460,7 +637,7 @@ with col4:
     st.markdown(
         f"""
         <div class="kpi-card">
-            <div class="kpi-title">🚀 Average Speed</div>
+            <div class="kpi-title">Average Speed</div>
             <div class="kpi-value">{average_speed:,.0f} km/h</div>
         </div>
         """,
@@ -477,14 +654,14 @@ st.markdown("---")
 
 summary, overview, performance, pricing, comparison, companies_tab, explorer, prediction = st.tabs(
     [
-        "📋 Project Summary",
-        "🌌 Overview",
-        "🏎️ Performance",
-        "💰 Pricing",
-        "⚖️ Compare Cars",
-        "🏢 Manufacturers",
-        "🔎 Car Explorer",
-        "💰 Price Prediction"
+        "Project Summary",
+        "Overview",
+        "Performance",
+        "Pricing",
+        "Compare Cars",
+        "Manufacturers",
+        "Car Explorer",
+        "Price Prediction"
     ]
 )
 
@@ -496,11 +673,11 @@ summary, overview, performance, pricing, comparison, companies_tab, explorer, pr
 with summary:
 
     st.markdown(
-        '<div class="section-title">📋 Project Summary</div>',
+        '<div class="section-title">Project Summary</div>',
         unsafe_allow_html=True
     )
 
-    st.markdown("### 🎯 Problem Statement")
+    st.markdown("### Problem Statement")
 
     st.write(
         """
@@ -511,7 +688,7 @@ with summary:
     )
 
 
-    st.markdown("### 🎯 Project Objectives")
+    st.markdown("### Project Objectives")
 
     objectives = [
         "Clean and preprocess the car dataset.",
@@ -528,11 +705,11 @@ with summary:
     for objective in objectives:
 
         st.write(
-            "✔️ " + objective
+            objective
         )
 
 
-    st.markdown("### 📊 Dataset Information")
+    st.markdown("### Dataset Information")
 
 
     info_col1, info_col2, info_col3 = st.columns(3)
@@ -562,7 +739,7 @@ with summary:
         )
 
 
-    st.markdown("### 🧹 Data Cleaning")
+    st.markdown("### Data Cleaning")
 
 
     cleaning_points = [
@@ -578,11 +755,11 @@ with summary:
     for point in cleaning_points:
 
         st.write(
-            "✔️ " + point
+            point
         )
 
 
-    st.markdown("### 🔬 Exploratory Data Analysis")
+    st.markdown("### Exploratory Data Analysis")
 
 
     st.write(
@@ -594,7 +771,7 @@ with summary:
     )
 
 
-    st.markdown("### 🤖 Machine Learning")
+    st.markdown("### Machine Learning")
 
 
     st.write(
@@ -611,7 +788,7 @@ with summary:
     )
 
 
-    st.markdown("### 🛠️ Technologies Used")
+    st.markdown("### Technologies Used")
 
 
     technologies = [
@@ -631,11 +808,11 @@ with summary:
     for technology in technologies:
 
         st.write(
-            "🔹 " + technology
+            technology
         )
 
 
-    st.markdown("### 🔄 Project Workflow")
+    st.markdown("### Project Workflow")
 
 
     st.write(
@@ -654,7 +831,7 @@ with summary:
 with overview:
 
     st.markdown(
-        '<div class="section-title">🌌 Market Overview</div>',
+        '<div class="section-title">Market Overview</div>',
         unsafe_allow_html=True
     )
 
@@ -774,7 +951,7 @@ with overview:
         # ----------------------------------------------------
 
         st.markdown(
-            "### 💡 Live Insights"
+            "### Live Insights"
         )
 
 
@@ -791,7 +968,7 @@ with overview:
         st.markdown(
             f"""
             <div class="insight-card">
-            💰 Highest priced car in the current selection:
+            Highest priced car in the current selection:
             <b>{highest_price_car['Cars Names']}</b>
             </div>
             """,
@@ -802,7 +979,7 @@ with overview:
         st.markdown(
             f"""
             <div class="insight-card">
-            🐎 Highest horsepower car:
+            Highest horsepower car:
             <b>{highest_hp_car['Cars Names']}</b>
             </div>
             """,
@@ -817,7 +994,7 @@ with overview:
 with performance:
 
     st.markdown(
-        '<div class="section-title">🏎️ Performance Analysis</div>',
+        '<div class="section-title">Performance Analysis</div>',
         unsafe_allow_html=True
     )
 
@@ -898,7 +1075,7 @@ with performance:
 
 
         st.markdown(
-            "### 📊 Correlation with Price"
+            "### Correlation with Price"
         )
 
 
@@ -958,7 +1135,7 @@ with performance:
 with pricing:
 
     st.markdown(
-        '<div class="section-title">💰 Pricing Analysis</div>',
+        '<div class="section-title">Pricing Analysis</div>',
         unsafe_allow_html=True
     )
 
@@ -1007,11 +1184,11 @@ with pricing:
 
 
         # ----------------------------------------------------
-        # FIXED PRICE SEGMENTS
+        # PRICE SEGMENTS
         # ----------------------------------------------------
 
         st.markdown(
-            "### 📊 Price Segments"
+            "### Price Segments"
         )
 
 
@@ -1034,9 +1211,6 @@ with pricing:
             "Cars"
         ]
 
-
-        # IMPORTANT FIX:
-        # Convert Pandas Interval objects to strings
 
         segment_df["Price Range"] = (
             segment_df["Price Range"]
@@ -1070,7 +1244,7 @@ with pricing:
         # ----------------------------------------------------
 
         st.markdown(
-            "### 🏆 Highest-Priced Cars"
+            "### Highest-Priced Cars"
         )
 
 
@@ -1104,7 +1278,7 @@ with pricing:
 with comparison:
 
     st.markdown(
-        '<div class="section-title">⚖️ Compare Cars</div>',
+        '<div class="section-title">Compare Cars</div>',
         unsafe_allow_html=True
     )
 
@@ -1299,7 +1473,7 @@ with comparison:
 with companies_tab:
 
     st.markdown(
-        '<div class="section-title">🏢 Manufacturer Analysis</div>',
+        '<div class="section-title">Manufacturer Analysis</div>',
         unsafe_allow_html=True
     )
 
@@ -1342,7 +1516,7 @@ with companies_tab:
 
 
         st.markdown(
-            "### 📊 Manufacturer Summary"
+            "### Manufacturer Summary"
         )
 
 
@@ -1359,7 +1533,7 @@ with companies_tab:
 with explorer:
 
     st.markdown(
-        '<div class="section-title">🔎 Car Explorer</div>',
+        '<div class="section-title">Car Explorer</div>',
         unsafe_allow_html=True
     )
 
@@ -1381,7 +1555,7 @@ with explorer:
 
 
     st.markdown(
-        f"### 🏎️ {explorer_car}"
+        f"### {explorer_car}"
     )
 
 
@@ -1421,7 +1595,7 @@ with explorer:
 
 
     st.markdown(
-        "### 📋 Technical Specifications"
+        "### Technical Specifications"
     )
 
 
@@ -1467,7 +1641,7 @@ with explorer:
 with prediction:
 
     st.markdown(
-        '<div class="section-title">💰 Car Price Prediction</div>',
+        '<div class="section-title">Car Price Prediction</div>',
         unsafe_allow_html=True
     )
 
@@ -1481,7 +1655,7 @@ with prediction:
 
 
     st.info(
-        "🤖 Prediction is generated using the Random Forest model trained in Google Colab."
+        "Prediction is generated using the Random Forest model trained in Google Colab."
     )
 
 
@@ -1495,7 +1669,7 @@ with prediction:
     with col1:
 
         manufacturer = st.selectbox(
-            "🏢 Manufacturer",
+            "Manufacturer",
             sorted(
                 df["Company Names"]
                 .dropna()
@@ -1506,7 +1680,7 @@ with prediction:
 
 
         fuel_type = st.selectbox(
-            "⛽ Fuel Type",
+            "Fuel Type",
             sorted(
                 df["Fuel Types"]
                 .dropna()
@@ -1517,7 +1691,7 @@ with prediction:
 
 
         horsepower = st.number_input(
-            "🐎 HorsePower",
+            "HorsePower",
             min_value=0.0,
             value=150.0,
             step=1.0,
@@ -1526,7 +1700,7 @@ with prediction:
 
 
         top_speed = st.number_input(
-            "🚀 Top Speed (km/h)",
+            "Top Speed (km/h)",
             min_value=0.0,
             value=200.0,
             step=1.0,
@@ -1541,7 +1715,7 @@ with prediction:
     with col2:
 
         performance = st.number_input(
-            "⚡ 0–100 km/h Performance (seconds)",
+            "0–100 km/h Performance (seconds)",
             min_value=0.0,
             value=8.0,
             step=0.1,
@@ -1550,7 +1724,7 @@ with prediction:
 
 
         cc_battery = st.number_input(
-            "🔋 CC / Battery Capacity",
+            "CC / Battery Capacity",
             min_value=0.0,
             value=1500.0,
             step=50.0,
@@ -1559,7 +1733,7 @@ with prediction:
 
 
         seats = st.number_input(
-            "💺 Seats",
+            "Seats",
             min_value=1.0,
             value=5.0,
             step=1.0,
@@ -1568,7 +1742,7 @@ with prediction:
 
 
         torque = st.number_input(
-            "🔧 Torque (Nm)",
+            "Torque (Nm)",
             min_value=0.0,
             value=200.0,
             step=10.0,
@@ -1584,7 +1758,7 @@ with prediction:
     # --------------------------------------------------------
 
     predict_button = st.button(
-        "🚀 Predict Car Price",
+        "Predict Car Price",
         use_container_width=True,
         type="primary"
     )
@@ -1637,23 +1811,36 @@ with prediction:
 
 
             st.markdown(
-    f"""<div style="text-align:center;">
-    <div style="color:#a9c6d9; font-size:18px;">
-    Estimated Car Price
-    </div>
-    <div class="prediction-price">
-    ${prediction_value:,.2f}
-    </div>
-    <div style="color:#9bb5c7; margin-top:10px;">
-    Based on the specifications provided
-    </div>
-    </div>""",
-    unsafe_allow_html=True
-)
+                f"""
+                <div class="prediction-card">
+
+                    <div style="
+                        color:#8f9aa6;
+                        font-size:16px;
+                        margin-bottom:10px;
+                    ">
+                        Estimated Car Price
+                    </div>
+
+                    <div class="prediction-price">
+                        ${prediction_value:,.2f}
+                    </div>
+
+                    <div style="
+                        color:#8f9aa6;
+                        margin-top:10px;
+                    ">
+                        Based on the specifications provided
+                    </div>
+
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
 
 
             st.markdown(
-                "### 📋 Prediction Input"
+                "### Prediction Input"
             )
 
 
@@ -1693,7 +1880,7 @@ with prediction:
         except Exception as e:
 
             st.error(
-                "❌ Prediction could not be generated."
+                "Prediction could not be generated."
             )
 
             st.code(
@@ -1709,7 +1896,7 @@ st.markdown("---")
 
 
 st.markdown(
-    "### 📥 Download Current Dataset"
+    "### Download Current Dataset"
 )
 
 
@@ -1717,10 +1904,9 @@ csv_data = filtered_df.to_csv(
     index=False
 ).encode("utf-8")
 
-csv_data = filtered_df.to_csv(index=False)
 
 st.download_button(
-    label="⬇️ Download Current Dataset",
+    label="Download Current Dataset",
     data=csv_data,
     file_name="current_car_dataset.csv",
     mime="text/csv",
@@ -1732,12 +1918,12 @@ st.download_button(
 # FOOTER
 # ============================================================
 
-# ============================================================
-# FOOTER
-# ============================================================
-
 st.markdown(
-    '<div class="footer">  <b>Car Price Analytics Dashboard</b><br>'
-    'Built with Python • Pandas • Plotly • Scikit-learn • Streamlit</div>',
+    """
+    <div class="footer">
+        <b>Car Price Analytics Dashboard</b><br>
+        Built with Python • Pandas • Plotly • Scikit-learn • Streamlit
+    </div>
+    """,
     unsafe_allow_html=True
 )
