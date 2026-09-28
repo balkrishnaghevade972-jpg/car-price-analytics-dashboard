@@ -1050,8 +1050,9 @@ with pricing:
         # IMPORTANT FIX:
         # Convert Pandas Interval objects to strings
 
-        segment_df["Price Range"] = segment_df["Price Range"].apply(
-            lambda interval: f"₹{interval.left:,.0f} – ₹{interval.right:,.0f}"
+       segment_df["Price Range (₹)"] = segment_df["Price Range (₹)"].apply(
+    lambda interval: f"₹{interval.left:,.0f} – ₹{interval.right:,.0f}"
+
         )
 
 
