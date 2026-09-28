@@ -230,6 +230,72 @@ st.markdown("""
         font-weight: 600 !important;
     }
 
+
+
+    /* EXTRA READABILITY: larger text, stronger contrast, clearer controls */
+    html, body, [class*="css"], .stApp {
+        font-size: 18px !important;
+        color: #f4f8ff !important;
+    }
+    .main-title { font-size: clamp(38px, 4vw, 56px) !important; }
+    .subtitle { font-size: 21px !important; color: #d3e7f5 !important; }
+    .section-title { font-size: 32px !important; color: #55efff !important; }
+    h1 { font-size: 2.35rem !important; color: #f7fbff !important; }
+    h2 { font-size: 1.9rem !important; color: #f7fbff !important; }
+    h3 { font-size: 1.45rem !important; color: #f0f7ff !important; }
+    p, li, label, .stMarkdown, [data-testid="stCaptionContainer"] {
+        color: #edf5ff !important;
+        font-size: 18px !important;
+        line-height: 1.65 !important;
+    }
+    small, .stCaption { color: #c6d8e8 !important; }
+    .kpi-title { color: #d3e7f5 !important; font-size: 18px !important; font-weight: 700 !important; }
+    .kpi-value { font-size: 34px !important; }
+    .prediction-price { font-size: clamp(40px, 4vw, 56px) !important; }
+    div[data-testid="stTabs"] button[role="tab"] {
+        background: #18324e !important;
+        color: #ffffff !important;
+        border: 1px solid #4c7698 !important;
+        padding: 16px 22px !important;
+        min-height: 58px !important;
+        font-size: 17px !important;
+    }
+    div[data-testid="stTabs"] button[role="tab"] p {
+        color: #ffffff !important;
+        font-size: 17px !important;
+        font-weight: 800 !important;
+    }
+    div[data-testid="stTabs"] button[role="tab"][aria-selected="true"] {
+        background: #00cfe8 !important;
+        color: #061522 !important;
+        border: 2px solid #a4f8ff !important;
+    }
+    div[data-testid="stTabs"] button[role="tab"][aria-selected="true"] p {
+        color: #061522 !important;
+    }
+    [data-testid="stSidebar"] label, [data-testid="stSidebar"] p {
+        color: #f3f8ff !important;
+        font-size: 17px !important;
+    }
+    [data-testid="stTextInput"] input, [data-testid="stNumberInput"] input,
+    [data-testid="stSelectbox"] div, [data-testid="stMultiSelect"] div {
+        font-size: 17px !important;
+    }
+    [data-testid="stDataFrame"] *, [data-testid="stTable"] * {
+        font-size: 16px !important;
+    }
+    div[data-testid="stMetric"] label,
+    div[data-testid="stMetric"] [data-testid="stMetricValue"] {
+        color: #ffffff !important;
+        font-size: 20px !important;
+    }
+    .stAlert, [data-testid="stAlert"] p { font-size: 17px !important; }
+    .stButton button, .stDownloadButton button {
+        font-size: 18px !important;
+        font-weight: 800 !important;
+        min-height: 52px !important;
+    }
+
 </style>
 """, unsafe_allow_html=True)
 
