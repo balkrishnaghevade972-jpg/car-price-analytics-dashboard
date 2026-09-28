@@ -1022,16 +1022,16 @@ with pricing:
         # FIXED PRICE SEGMENTS
         # ----------------------------------------------------
 
-        st.markdown(
-            "###  Price Segments"
-        )
+               # ----------------------------------------------------
+        # FIXED PRICE SEGMENTS
+        # ----------------------------------------------------
 
+        st.markdown("### Price Segments")
 
         price_segments = pd.cut(
             filtered_df["Price"],
             bins=5
         )
-
 
         segment_df = (
             price_segments
@@ -1040,21 +1040,14 @@ with pricing:
             .reset_index()
         )
 
-
         segment_df.columns = [
             "Price Range (₹)",
             "Cars"
         ]
 
-
-        # IMPORTANT FIX:
-        # Convert Pandas Interval objects to strings
-
-       segment_df["Price Range (₹)"] = segment_df["Price Range (₹)"].apply(
-    lambda interval: f"₹{interval.left:,.0f} – ₹{interval.right:,.0f}"
-
+        segment_df["Price Range (₹)"] = segment_df["Price Range (₹)"].apply(
+            lambda interval: f"₹{interval.left:,.0f} – ₹{interval.right:,.0f}"
         )
-
 
         fig = px.bar(
             segment_df,
@@ -1062,7 +1055,6 @@ with pricing:
             y="Cars",
             title="Cars by Price Segment"
         )
-
 
         fig.update_layout(
             template="plotly_dark",
