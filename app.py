@@ -1462,7 +1462,7 @@ with comparison:
 with companies_tab:
 
     st.markdown(
-        '<div class="section-title">🏢 Manufacturer Analysis</div>',
+        '<div class="section-title"> Manufacturer Analysis</div>',
         unsafe_allow_html=True
     )
 
