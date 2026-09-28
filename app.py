@@ -10,6 +10,9 @@ import plotly.express as px
 import plotly.graph_objects as go
 import joblib
 
+# Currency conversion (USD to INR). Update this rate when needed.
+USD_TO_INR = 95.80
+
 
 # ============================================================
 # PAGE CONFIGURATION
@@ -193,6 +196,10 @@ for column in numeric_columns:
             errors="coerce"
         )
 
+
+# Convert dataset prices from USD to INR for dashboard display and analysis.
+# The trained model is still assumed to predict prices in USD.
+df["Price"] = df["Price"] * USD_TO_INR
 
 df = df.dropna(
     subset=["Price"]
@@ -435,7 +442,7 @@ with col2:
         f"""
         <div class="kpi-card">
             <div class="kpi-title"> Average Price</div>
-            <div class="kpi-value">${average_price:,.0f}</div>
+            <div class="kpi-value">₹{average_price:,.0f}</div>
         </div>
         """,
         unsafe_allow_html=True
@@ -557,8 +564,8 @@ with summary:
     with info_col3:
 
         st.metric(
-            "Average Price",
-            f"${df['Price'].mean():,.0f}"
+            "Average Price (₹)",
+            f"₹{df['Price'].mean():,.0f}"
         )
 
 
@@ -731,7 +738,8 @@ with overview:
                 avg_fuel_price,
                 x="Fuel Types",
                 y="Price",
-                title="Average Price by Fuel Type"
+                title="Average Price by Fuel Type",
+                labels={"Price": "Price (₹)"}
             )
 
 
@@ -754,7 +762,8 @@ with overview:
             filtered_df,
             x="Price",
             nbins=40,
-            title="Car Price Distribution"
+            title="Car Price Distribution",
+            labels={"Price": "Price (₹)"}
         )
 
 
@@ -840,7 +849,8 @@ with performance:
                 x="HorsePower",
                 y="Price",
                 hover_name="Cars Names",
-                title="HorsePower vs Price"
+                title="HorsePower vs Price",
+                labels={"Price": "Price (₹)"}
             )
 
 
@@ -862,7 +872,8 @@ with performance:
                 x="Total Speed",
                 y="Price",
                 hover_name="Cars Names",
-                title="Top Speed vs Price"
+                title="Top Speed vs Price",
+                labels={"Price": "Price (₹)"}
             )
 
 
@@ -882,7 +893,8 @@ with performance:
             x="Performance(0 - 100 )KM/H",
             y="Price",
             hover_name="Cars Names",
-            title="0–100 km/h Performance vs Price"
+            title="0–100 km/h Performance vs Price",
+            labels={"Price": "Price (₹)"}
         )
 
 
@@ -977,32 +989,32 @@ with pricing:
         with p1:
 
             st.metric(
-                "Minimum Price",
-                f"${filtered_df['Price'].min():,.0f}"
+                "Minimum Price (₹)",
+                f"₹{filtered_df['Price'].min():,.0f}"
             )
 
 
         with p2:
 
             st.metric(
-                "Median Price",
-                f"${filtered_df['Price'].median():,.0f}"
+                "Median Price (₹)",
+                f"₹{filtered_df['Price'].median():,.0f}"
             )
 
 
         with p3:
 
             st.metric(
-                "Average Price",
-                f"${filtered_df['Price'].mean():,.0f}"
+                "Average Price (₹)",
+                f"₹{filtered_df['Price'].mean():,.0f}"
             )
 
 
         with p4:
 
             st.metric(
-                "Maximum Price",
-                f"${filtered_df['Price'].max():,.0f}"
+                "Maximum Price (₹)",
+                f"₹{filtered_df['Price'].max():,.0f}"
             )
 
 
@@ -1030,7 +1042,7 @@ with pricing:
 
 
         segment_df.columns = [
-            "Price Range",
+            "Price Range (₹)",
             "Cars"
         ]
 
@@ -1038,15 +1050,14 @@ with pricing:
         # IMPORTANT FIX:
         # Convert Pandas Interval objects to strings
 
-        segment_df["Price Range"] = (
-            segment_df["Price Range"]
-            .astype(str)
+        segment_df["Price Range"] = segment_df["Price Range"].apply(
+            lambda interval: f"₹{interval.left:,.0f} – ₹{interval.right:,.0f}"
         )
 
 
         fig = px.bar(
             segment_df,
-            x="Price Range",
+            x="Price Range (₹)",
             y="Cars",
             title="Cars by Price Segment"
         )
@@ -1054,7 +1065,7 @@ with pricing:
 
         fig.update_layout(
             template="plotly_dark",
-            xaxis_title="Price Range",
+            xaxis_title="Price Range (₹)",
             yaxis_title="Number of Cars"
         )
 
@@ -1392,7 +1403,7 @@ with explorer:
 
         st.metric(
             "Price",
-            f"${selected_car['Price']:,.0f}"
+            f"₹{selected_car['Price']:,.0f}"
         )
 
 
@@ -1481,7 +1492,7 @@ with prediction:
 
 
     st.info(
-        " Prediction is generated using the Random Forest model trained in Google Colab."
+        " Prediction is generated using the Random Forest model trained in Google Colab. The model output is converted from USD to INR."
     )
 
 
@@ -1642,7 +1653,7 @@ with prediction:
     Estimated Car Price
     </div>
     <div class="prediction-price">
-    ${prediction_value:,.2f}
+    ₹{prediction_value * USD_TO_INR:,.0f}
     </div>
     <div style="color:#9bb5c7; margin-top:10px;">
     Based on the specifications provided
