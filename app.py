@@ -137,6 +137,99 @@ st.markdown("""
     color: white !important;
 }
 
+
+
+    /* HIGH-VISIBILITY NAVIGATION TABS */
+    div[data-testid="stTabs"] > div[role="tablist"] {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        border-bottom: 1px solid rgba(0, 229, 255, 0.35);
+        padding: 12px 10px 16px;
+        background: linear-gradient(90deg, rgba(0, 229, 255, 0.07), rgba(15, 31, 56, 0.75));
+        border-radius: 16px;
+        margin: 18px 0 24px;
+    }
+
+    div[data-testid="stTabs"] button[role="tab"] {
+        background: linear-gradient(145deg, #142943, #0b172b);
+        border: 1px solid #31516e;
+        border-radius: 12px;
+        color: #d8e9f5;
+        padding: 13px 18px;
+        min-height: 48px;
+        font-size: 15px;
+        font-weight: 700;
+        transition: all 0.2s ease;
+        margin: 2px;
+    }
+
+    div[data-testid="stTabs"] button[role="tab"] p {
+        color: inherit;
+        font-weight: 700;
+        font-size: 15px;
+    }
+
+    div[data-testid="stTabs"] button[role="tab"]:hover {
+        background: #123b55;
+        border-color: #00e5ff;
+        color: #ffffff;
+        transform: translateY(-2px);
+    }
+
+    div[data-testid="stTabs"] button[role="tab"][aria-selected="true"] {
+        background: linear-gradient(135deg, #00bcd4, #007cba);
+        border: 1px solid #67f3ff;
+        color: #04111e;
+        box-shadow: 0 5px 18px rgba(0, 229, 255, 0.28);
+    }
+
+    div[data-testid="stTabs"] button[role="tab"][aria-selected="true"] p {
+        color: #04111e;
+    }
+
+    /* Clearer section headings and widgets */
+    .section-title {
+        background: linear-gradient(90deg, rgba(0, 229, 255, 0.13), rgba(0, 229, 255, 0));
+        border-left: 5px solid #00e5ff;
+        border-radius: 8px;
+        padding: 12px 16px;
+        letter-spacing: 0.4px;
+    }
+
+    div[data-testid="stMetric"] {
+        background: linear-gradient(145deg, #10243d, #0b172b);
+        border: 1px solid #244c6a;
+        border-radius: 14px;
+        padding: 16px 18px;
+    }
+
+    div.stButton > button[kind="primary"] {
+        background: linear-gradient(135deg, #00cfe8, #007cba) !important;
+        color: #04111e !important;
+        border: 1px solid #67f3ff !important;
+        border-radius: 13px !important;
+        min-height: 54px;
+        font-size: 17px !important;
+        font-weight: 800 !important;
+        box-shadow: 0 6px 20px rgba(0, 229, 255, 0.22);
+    }
+
+    div.stButton > button[kind="primary"]:hover {
+        background: linear-gradient(135deg, #5af0ff, #00a6d6) !important;
+        transform: translateY(-1px);
+    }
+
+    [data-testid="stSidebar"] {
+        background: linear-gradient(180deg, #09172a, #050b18);
+        border-right: 1px solid rgba(0, 229, 255, 0.2);
+    }
+
+    [data-testid="stSidebar"] label {
+        color: #d7eaf6 !important;
+        font-weight: 600 !important;
+    }
+
 </style>
 """, unsafe_allow_html=True)
 
